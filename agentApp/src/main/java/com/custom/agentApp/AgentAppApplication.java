@@ -19,7 +19,7 @@ public class AgentAppApplication {
                 .Default()
                 .type(ElementMatchers.nameStartsWith("com.custom.beAgentApp"))
                 .transform(transformer())
-//                .with(new AgentListener())
+                .with(new AgentListener())
                 .installOn(instrumentation);
     }
 
