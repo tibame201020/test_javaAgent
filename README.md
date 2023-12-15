@@ -1,4 +1,4 @@
-## test javaagent and use bytebuddy
+## test JavaAgent and use bytebuddy
 ```
 package beAgentApp by maven
 ```
