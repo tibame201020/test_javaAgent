@@ -10,7 +10,7 @@ import java.lang.instrument.Instrumentation;
 public class AgentAppApplication {
 
     /**
-     * premain 註冊 bytebuddy
+     * premain 註冊 bytebuddy AgentBuilder
      */
     public static void premain(String agentArgs, Instrumentation instrumentation) {
         System.out.println("in AgentAppApplication premain.");
@@ -25,7 +25,10 @@ public class AgentAppApplication {
 
     private static AgentBuilder.Transformer transformer() {
         return (builder, typeDescription, classLoader, javaModule, protectionDomain)
-                -> builder.visit(Advice.to(CustomInterceptor.class).on(ElementMatchers.any()));
+                ->
+                builder.visit(Advice.to(CustomAop.class).on(ElementMatchers.any()))
+                        .method(ElementMatchers.any())
+                        .intercept(MethodDelegation.to(CustomInterceptor.class));
 
     }
 
